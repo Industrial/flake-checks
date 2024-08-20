@@ -1,16 +1,17 @@
 {
   inputs,
   system,
-  run-nix-hooks ? true,
+  custom-hooks ? {},
   run-bash-hooks ? true,
-  run-markdown-hooks ? true,
-  run-yaml-hooks ? true,
-  run-toml-hooks ? true,
-  run-json-hooks ? true,
-  run-git-hooks ? true,
-  run-typescript-hooks ? true,
   run-generic-hooks ? true,
+  run-git-hooks ? true,
+  run-json-hooks ? true,
+  run-markdown-hooks ? true,
+  run-nix-hooks ? true,
+  run-toml-hooks ? true,
+  run-typescript-hooks ? true,
   run-unit-tests ? true,
+  run-yaml-hooks ? true,
 }: let
   nix-hooks =
     if run-nix-hooks
@@ -110,14 +111,15 @@
   all-hooks =
     nix-hooks
     // bash-hooks
-    // markdown-hooks
-    // yaml-hooks
-    // toml-hooks
-    // json-hooks
-    // git-hooks
-    // typescript-hooks
+    // custom-hooks
     // generic-hooks
-    // unit-tests;
+    // git-hooks
+    // json-hooks
+    // markdown-hooks
+    // toml-hooks
+    // typescript-hooks
+    // unit-tests
+    // yaml-hooks;
 in {
   pre-commit-check = inputs.git-hooks.lib.${system}.run {
     src = ./..;
