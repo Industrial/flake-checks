@@ -40,3 +40,4 @@ defined one pre-commit check that I use in all my flakes.
 | run-typescript-hooks | true    | Wether to run the typescript hooks.      |
 | run-generic-hooks    | true    | Wether to run the generic hooks.         |
 | run-unit-tests       | true    | Wether to run the unit tests (nix-unit). |
+| custom-hooks         | {}      | Add your own hooks.                      |
